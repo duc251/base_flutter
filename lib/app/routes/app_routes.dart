@@ -1,3 +1,7 @@
+import 'package:app_base/app/page/default_page.dart';
+import 'package:app_base/app/page/loading_page.dart';
+import 'package:app_base/app/page/welcome_page.dart';
+import 'package:app_base/app/utilities/page_buider.dart';
 import 'package:flutter/material.dart';
 
 class AppRoutes {
@@ -14,10 +18,10 @@ class AppRoutes {
     //trả về các màn hình dựa trên routersett
     switch (settings.name) {
       //xác đing giá trị setting / tên màn hình muốn xây dựng
-      case errorPage:
-        return PageBuilder(const ErrorPage(), settings);
-      // case loadingPage:
-      //   return PageBuilder(const LoadingPage(), settings);
+      // case errorPage:
+      //   return PageBuilder(const ErrorPage(), settings);
+      case loadingPage:
+        return PageBuilder(const LoadingPage(), settings);
       // case loginPage:
       //   return PageBuilder(const LoginPage(), settings);
       // case mainPage:
@@ -26,10 +30,10 @@ class AppRoutes {
       //   return PageBuilder(const RegisterPage(), settings);
       // case splashPage:
       //   return PageBuilder(const SplashPage(), settings);
-      // case welcomePage:
-      //   return PageBuilder(const WelcomePage(), settings);
-      // default:
-      //   return PageBuilder(const DefaultPage(), settings);
+      case welcomePage:
+        return PageBuilder(const WelcomePage(), settings);
+      default:
+        return PageBuilder(const DefaultPage(), settings);
     }
   }
 }
