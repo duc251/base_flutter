@@ -1,5 +1,6 @@
 import 'package:app_base/core/globals/logger.dart';
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 
 class DefaultPage extends StatelessWidget {
   const DefaultPage({Key? key}) : super(key: key);

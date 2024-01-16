@@ -1,11 +1,13 @@
 import 'package:app_base/app/my_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:logger/logger.dart';
 
 void main() {
-  // Logger.setup();
+   Logger.setup();
 
-  // Bloc.observer = BlocObserverExt();
+  Bloc.observer = BlocObserverExt();
 
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,

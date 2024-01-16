@@ -1,4 +1,4 @@
-@singleton 
-class AppPreferences{
-  Future<Setting?> 
-}
+// @singleton 
+// class AppPreferences{
+//   Future<Setting?> 
+// }

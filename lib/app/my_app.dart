@@ -21,8 +21,8 @@ class _MyAppState extends State<MyApp> {
   final appBloc = getIt<A>
 
   @override
-  Widget build(BuildContext context) {
-    Logger.info('build: App$key');
+  Widget build(BuildContext context) { 
+    loggerNoStack.i('build: App$key');
     WidgetsBinding.instance.addObserver(WidgetsBindingObserver(
         handleResumed: () async => {
               SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
