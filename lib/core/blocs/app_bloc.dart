@@ -1,5 +1,6 @@
 import 'package:app_base/core/models/app/setting.model.dart';
 import 'package:app_base/core/repositories/app_repository.dart';
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

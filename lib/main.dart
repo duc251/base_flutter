@@ -1,8 +1,9 @@
 import 'package:app_base/app/my_app.dart';
+import 'package:app_base/core/globals/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:logger/logger.dart';
+
 
 void main() {
    Logger.setup();

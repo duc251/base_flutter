@@ -6,7 +6,7 @@ class WelcomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    loggerNoStack.i('build: WelcomePage');
+    Logger.info('build: WelcomePage');
 
     return const Scaffold(
       body: Center(child: Text('WelcomePage WelcomePage WelcomePage')),

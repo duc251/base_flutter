@@ -6,7 +6,7 @@ class LoadingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    loggerNoStack.i('build: LoadingPage');
+    Logger.info('build: LoadingPage');
 
     return const Scaffold(
       body: Center(child: Text('LoadingPage')),
