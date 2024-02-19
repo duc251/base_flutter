@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:app_base/core/globals/config.dart';
 import 'package:app_base/core/models/commons/base.mode.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'setting.model.g.dart';
 
