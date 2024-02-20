@@ -18,7 +18,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -28,6 +28,10 @@ class _MyAppState extends State<MyApp> {
   final EnvConfig _envConfig = BuildConfig.instance.envConfig;
   NavigatorState get _navigatorState => navigatorKey.currentState!;
   //final appBloc = getIt<A>
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,10 +44,12 @@ class _MyAppState extends State<MyApp> {
               SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
                   systemNavigationBarIconBrightness: Brightness.dark))
             }));
+
     final repository = getIt<AppRepository>();
+
     return MultiRepositoryProvider(
       providers: [
-        RepositoryProvider(create: (context) => repository),
+        RepositoryProvider<AppRepository>(create: (context) => repository),
       ],
       child: MultiBlocProvider(
           providers: [
@@ -51,33 +57,47 @@ class _MyAppState extends State<MyApp> {
                 create: (context) =>
                     AppBloc(repository)..add(StartedEvent(key: widget.key)))
           ],
-          child: MaterialApp(
-            //title: Config.appTitle,
-            title: _envConfig.appName.toLowerCase(),
-            color: primaryColor,
-            theme: AppThemeData.instance.light(),
-             navigatorKey: navigatorKey,
-             navigatorObservers: [routeObserverExt],
-             onGenerateRoute: AppRoutes.generateAppRoute,
-             debugShowCheckedModeBanner: false,
-             darkTheme: AppThemeData.instance.dark(),
-             //themeMode: isdarkmode,
-             builder: (context, child){
-              return BlocListener(
-                listenWhen: (previous, current )=>
-                previous is! LoadSuccessState && 
-                current is LoadSuccessState,
-                listener: (context, state){
-                  if(state is InitialState){}
-                  if (state is InProgressState){
-                    _navigatorState.pushNamedAndRemoveUntil(
-                      AppRoutes.welcomePage, (context) => false);
-                  }
-                },
-                child: child,
+          child: BlocBuilder<AppBloc, AppState>(builder: (context, state) {
+            return MaterialApp(
+              //title: Config.appTitle,
+              title: _envConfig.appName.toLowerCase(),
+              color: primaryColor,
+              theme: AppThemeData.instance.light(),
+              navigatorKey: navigatorKey,
+              navigatorObservers: [routeObserverExt],
+              onGenerateRoute: AppRoutes.generateAppRoute,
+              debugShowCheckedModeBanner: false,
+              darkTheme: AppThemeData.instance.dark(),
+              //themeMode: isdarkmode,
+              builder: (context, child) {
+                return BlocListener<AppBloc, AppState>(
+                  listenWhen: (previous, current) =>
+                      previous is! LoadSuccessState &&
+                      current is LoadSuccessState,
+                  listener: (context, state) {
+                    if (state is InitialState) {}
+                    if (state is InProgressState) {
+                      _navigatorState.pushNamedAndRemoveUntil(
+                          AppRoutes.welcomePage, (context) => false);
+                    }
+                    // if (state is LogoutState) {
+                    //     _navigatorState.pushNamedAndRemoveUntil(
+                    //         AppRoutes.loginPage, (context) => false);
+                    //   }
+                      if (state is LoadSuccessState) {
+                        _navigatorState.pushNamedAndRemoveUntil(
+                            AppRoutes.welcomePage, (context) => false);
+                      }
+                      if (state is LoadFailureState) {
+                        _navigatorState.pushNamedAndRemoveUntil(
+                            AppRoutes.errorPage, (context) => false);
+                      }
+                  },
+                  child: child,
                 );
-             },
-          )),
+              },
+            );
+          })),
     );
   }
 }

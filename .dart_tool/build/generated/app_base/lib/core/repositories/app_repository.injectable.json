@@ -1,0 +1,1 @@
+[{"type":{"import":"package:app_base/core/repositories/app_repository.dart","name":"AppRepository","isNullable":false},"typeImpl":{"import":"package:app_base/core/repositories/app_repository.dart","name":"AppRepository","isNullable":false},"isAsync":false,"preResolve":false,"injectableType":1,"dependsOn":[],"environments":[],"dependencies":[],"constructorName":""}]

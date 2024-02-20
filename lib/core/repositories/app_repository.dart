@@ -4,7 +4,9 @@ import 'dart:async';
 import 'package:app_base/core/models/app/setting.model.dart';
 import 'package:app_base/core/repositories/exceptions/app_exception.dart';
 import 'package:app_base/device/storage/app_preferences.dart';
+import 'package:injectable/injectable.dart';
 
+@singleton
 class AppRepository{
   AppRepository._internal();
 
